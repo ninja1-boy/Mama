@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عيد ميلاد أمي أمل 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #f43f5e;
+    --pink: #fb7185;
+    --blush: #fda4af;
+    --light: #fff1f2;
+    --deep: #9f1239;
+    --purple: #c084fc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #fce4ec 0%, #ffd6e0 30%, #f8bbd0 60%, #fce4ec 100%);
+    overflow-x: hidden;
+    position: relative;
+    user-select: none;
+  }
+
+  /* ====== ANIMATED BG HEARTS ====== */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bg-heart {
+    position: absolute;
+    animation: bgFloat linear infinite;
+    opacity: 0;
+    font-size: 22px;
+    filter: blur(0.5px);
+  }
+
+  @keyframes bgFloat {
+    0%   { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+    5%   { opacity: 0.35; }
+    90%  { opacity: 0.2; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+  }
+
+  /* ====== SPARKLES ====== */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    animation: sparkleAnim linear infinite;
+    background: radial-gradient(circle, #fff8 60%, transparent 100%);
+  }
+
+  @keyframes sparkleAnim {
+    0%,100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  /* ====== LAYOUT ====== */
+  .page {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px 50px;
+    gap: 28px;
+  }
+
+  /* ====== TOP BANNER ====== */
+  .top-banner {
+    text-align: center;
+    animation: fadeDown 1.2s ease both;
+  }
+
+  .top-banner .emoji-row {
+    font-size: 32px;
+    letter-spacing: 6px;
+    animation: sway 3s ease-in-out infinite;
+  }
+
+  @keyframes sway {
+    0%,100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ====== MAIN CARD ====== */
+  .card {
+    width: 100%;
+    max-width: 580px;
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(20px);
+    border-radius: 35px;
+    padding: 40px 25px;
+    box-shadow:
+      0 10px 30px rgba(244,63,94,0.15),
+      0 0 0 1.5px rgba(244,63,94,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    animation: fadeUp 1.4s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(253,164,175,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at bottom left, rgba(244,63,94,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(50px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ====== TITLE ====== */
+  .card-title {
+    font-size: clamp(24px, 6vw, 36px);
+    font-weight: 900;
+    color: var(--rose);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(244,63,94,0.15);
+  }
+
+  /* ====== MESSAGE / POEM ====== */
+  .message {
+    font-size: clamp(16px, 4vw, 19px);
+    line-height: 2.2;
+    color: #5a2035;
+    text-align: center;
+    background: linear-gradient(135deg, #fff0f3 0%, #fce7f3 100%);
+    border-radius: 20px;
+    padding: 25px 20px;
+    border: 1px solid rgba(244,63,94,0.1);
+    position: relative;
+    font-weight: 700;
+  }
+
+  .message::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 60px;
+    color: rgba(244,63,94,0.15);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .poem-line {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* ====== DIVIDER ====== */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 15px 0;
+    color: var(--blush);
+    font-size: 22px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--blush), transparent);
+    border-radius: 2px;
+  }
+
+  /* ====== BIG HEART ====== */
+  .heart-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 10px;
+  }
+
+  .big-heart {
+    font-size: 85px;
+    cursor: pointer;
+    animation: heartbeat 1.8s ease-in-out infinite;
+    filter: drop-shadow(0 6px 20px rgba(244,63,94,0.35));
+    transition: transform 0.2s;
+    display: inline-block;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .big-heart:active { transform: scale(0.9) !important; }
+
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14%      { transform: scale(1.15); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.1); }
+    56%      { transform: scale(1); }
+  }
+
+  .heart-hint {
+    font-size: 15px;
+    color: var(--blush);
+    font-weight: 700;
+    animation: fadeIn 2s ease;
+  }
+
+  /* ====== MUSIC BOX ====== */
+  .music-box {
+    width: 100%;
+    max-width: 580px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(244,63,94,0.1);
+    animation: fadeUp 1.8s ease both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    border: 1.5px solid rgba(244,63,94,0.1);
+  }
+
+  .music-title {
+    font-size: clamp(18px, 4.5vw, 22px);
+    font-weight: 700;
+    color: var(--deep);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* PLAY BUTTON */
+  .play-btn {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--pink) 100%);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 20px rgba(244,63,94,0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .play-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+  }
+
+  .play-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(244,63,94,0.4);
+  }
+
+  .play-btn:active { transform: scale(0.95); }
+
+  .play-btn.playing {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 6px 20px rgba(16,185,129,0.3);
+  }
+
+  /* Equalizer */
+  .eq {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+  }
+
+  .eq-bar {
+    width: 4px;
+    background: #fff;
+    border-radius: 2px;
+    animation: eq 0.8s ease-in-out infinite alternate;
+  }
+
+  .eq-bar:nth-child(1) { animation-delay: 0s;    height: 8px; }
+  .eq-bar:nth-child(2) { animation-delay: 0.15s; height: 14px; }
+  .eq-bar:nth-child(3) { animation-delay: 0.3s;  height: 18px; }
+  .eq-bar:nth-child(4) { animation-delay: 0.15s; height: 14px; }
+  .eq-bar:nth-child(5) { animation-delay: 0s;    height: 8px; }
+
+  @keyframes eq {
+    from { transform: scaleY(0.3); }
+    to   { transform: scaleY(1); }
+  }
+
+  .eq.paused .eq-bar { animation-play-state: paused; }
+
+  /* ====== FLYING ITEMS ====== */
+  .fly-item {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    animation: flyUp cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    will-change: transform;
+  }
+
+  @keyframes flyUp {
+    0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(0); opacity: 1; }
+    50%  { opacity: 1; }
+    100% { transform: translateY(-500px) translateX(var(--dx)) rotate(var(--rot)) scale(1.5); opacity: 0; }
+  }
+
+  /* ====== FOOTER ====== */
+  .footer {
+    font-size: 16px;
+    color: rgba(159,18,57,0.8);
+    text-align: center;
+    padding-bottom: 20px;
+    animation: fadeIn 3s ease both;
+    line-height: 1.8;
+  }
+
+  .footer-name {
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--rose);
+    display: block;
+    margin-top: 5px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer" id="bgLayer"></div>
+
+<div class="page">
+
+  <div class="top-banner">
+    <div class="emoji-row">🌸 🎂 💖 🎂 🌸</div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">عيد ميلاد سعيد إلى أمي الجميلة أمل ❤️</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      🌹
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="message">
+      <span class="poem-line">يا "أمل" عمري ويا نور المكان 🌸</span>
+      <span class="poem-line">يا حضن دافي كله طيبة وحنان 🤍</span>
+      <span class="poem-line">ست الحبايب يا أغلى من روحي 💖</span>
+      <span class="poem-line">بلمسة من إيدك بتشفى جروحي ✨</span>
+      <span class="poem-line">كل عام وأنتِ الخير ونبض الفؤاد 🌷</span>
+      <span class="poem-line">يا جنة الدنيا.. يا أجمل أعياد 🎂</span>
+    </div>
+
+    <div class="divider" style="margin-top:20px;">
+      <div class="divider-line"></div>
+      💫
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="heart-wrap">
+      <span class="big-heart" onclick="explodeLove(event)" title="اضغطي هنا">💖</span>
+      <span class="heart-hint">✨ اضغطي على القلب ✨</span>
+    </div>
+
+  </div>
+
+  <div class="music-box">
+    <div class="music-title">
+      أغنية ست الحبايب 🎵
+    </div>
+
+    <button class="play-btn" id="playBtn" onclick="toggleSong()">
+      <span id="btnText">تشغيل الأغنية ❤️</span>
+      <div class="eq paused" id="eq">
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+      </div>
+    </button>
+  </div>
+
+  <div class="footer">
+    صُنع بكل حُب 🤍
+    <span class="footer-name">عبدالرحمن عاطف</span>
+  </div>
+
+</div>
+
+<audio id="myAudio" loop>
+  <source src="videoplayback.m4a" type="audio/mp4">
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
+
+<script>
+  /* ===== BG HEARTS GENERATOR ===== */
+  const bgSymbols = ['💖','🌸','💗','🌹','💕','✨','💓','🌷','💝','⭐'];
+  const bgLayer = document.getElementById('bgLayer');
+
+  for (let i = 0; i < 50; i++) {
+    const el = document.createElement('div');
+    el.className = 'bg-heart';
+    el.innerHTML = bgSymbols[Math.floor(Math.random() * bgSymbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (14 + Math.random() * 20) + 'px';
+    el.style.animationDuration = (7 + Math.random() * 12) + 's';
+    el.style.animationDelay = -(Math.random() * 15) + 's';
+    bgLayer.appendChild(el);
+  }
+
+  /* ===== SPARKLES ===== */
+  for (let i = 0; i < 20; i++) {
+    const sp = document.createElement('div');
+    sp.className = 'sparkle';
+    const size = 4 + Math.random() * 6;
+    sp.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}vw; top:${Math.random()*100}vh;
+      animation-duration:${2 + Math.random()*4}s;
+      animation-delay:${Math.random()*4}s;
+    `;
+    document.body.appendChild(sp);
+  }
+
+  /* ===== LOCAL AUDIO PLAYER SETUP ===== */
+  const audio = document.getElementById('myAudio');
+  const playBtn = document.getElementById('playBtn');
+  const btnText = document.getElementById('btnText');
+  const eq = document.getElementById('eq');
+
+  function toggleSong() {
+    if (audio.paused) {
+      audio.play().then(() => {
+        playBtn.classList.add('playing');
+        btnText.textContent = 'إيقاف الأغنية ⏸️';
+        eq.classList.remove('paused');
+      }).catch((error) => {
+        console.log("Audio play failed:", error);
+        btnText.textContent = 'اضغط مرة أخرى ⚠️';
+      });
+    } else {
+      audio.pause();
+      playBtn.classList.remove('playing');
+      btnText.textContent = 'تشغيل الأغنية ❤️';
+      eq.classList.add('paused');
+    }
+  }
+
+  /* ===== EXPLODE LOVE (HEARTS, FLOWERS & CAKE) ===== */
+  const flyItems = ['❤️', '💜', '💙', '💛', '🌸', '🌹', '🎂'];
+
+  function explodeLove(e) {
+    const cx = e.clientX || window.innerWidth / 2;
+    const cy = e.clientY || window.innerHeight / 2;
+
+    for (let i = 0; i < 60; i++) {
+      setTimeout(() => createFlyItem(cx, cy), i * 15);
+    }
+    
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
+  }
+
+  function createFlyItem(cx, cy) {
+    const el = document.createElement('div');
+    el.className = 'fly-item';
+    el.innerHTML = flyItems[Math.floor(Math.random() * flyItems.length)];
+
+    const dx = (Math.random() - 0.5) * 400; 
+    const rot = (Math.random() - 0.5) * 720; 
+    const dur = 1.2 + Math.random() * 1.5;   
+    const size = 20 + Math.random() * 30;    
+
+    el.style.left = cx + 'px';
+    el.style.top = cy + 'px';
+    el.style.fontSize = size + 'px';
+    el.style.setProperty('--dx', dx + 'px');
+    el.style.setProperty('--rot', rot + 'deg');
+    el.style.animationDuration = dur + 's';
+
+    document.body.appendChild(el);
+    
+    setTimeout(() => el.remove(), dur * 1000 + 100);
+  }
+
+  /* ===== CURSOR SPARKLE ===== */
+  document.addEventListener('touchmove', createCursorSparkle);
+  document.addEventListener('mousemove', createCursorSparkle);
+
+  function createCursorSparkle(e) {
+    if (Math.random() > 0.85) {
+      const s = document.createElement('div');
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      
+      s.style.cssText = `
+        position:fixed; pointer-events:none; z-index:9999;
+        left:${clientX}px; top:${clientY}px;
+        font-size:${12 + Math.random() * 14}px;
+        animation: flyUp 1s ease forwards;
+        --dx:${(Math.random() - 0.5) * 60}px;
+        --rot:${Math.random() * 360}deg;
+      `;
+      s.className = 'fly-item';
+      s.innerHTML = Math.random() > 0.5 ? '✨' : '🌸';
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 1000);
+    }
+  }
+</script>
+</body>
+</html>
