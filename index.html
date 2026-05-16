@@ -26,7 +26,6 @@
     touch-action: manipulation;
   }
 
-  /* هالة ضوئية خلف الكارت */
   .glow-bg {
     position: fixed;
     top: 50%;
@@ -139,9 +138,7 @@
     position: relative;
   }
 
-  .big-heart:active {
-    transform: scale(0.8);
-  }
+  .big-heart:active { transform: scale(0.8); }
 
   @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
@@ -150,6 +147,7 @@
     45% { transform: scale(1.1); }
   }
 
+  /* ====== MUSIC BOX ====== */
   .music-box {
     width: 100%;
     max-width: 580px;
@@ -178,6 +176,7 @@
     gap: 12px;
     transition: all 0.3s;
     box-shadow: 0 5px 15px rgba(244,63,94,0.3);
+    font-family: 'Tajawal', sans-serif;
   }
 
   .play-btn.playing { background: #10b981; box-shadow: 0 5px 15px rgba(16,185,129,0.3); }
@@ -187,7 +186,89 @@
   .eq.paused .eq-bar { animation-play-state: paused; }
   @keyframes eq { from { transform: scaleY(0.3); } to { transform: scaleY(1); } }
 
-  /* ستايل العناصر المتطايرة */
+  /* ====== CAKE SECTION ====== */
+  .cake-section {
+    width: 100%;
+    max-width: 580px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 28px;
+    padding: 26px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 25px rgba(244,63,94,0.1);
+    border: 1px solid rgba(244,63,94,0.1);
+    animation: fadeUp 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  .cake-label {
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--deep);
+  }
+
+  .big-cake {
+    font-size: 90px;
+    cursor: pointer;
+    display: inline-block;
+    filter: drop-shadow(0 8px 20px rgba(244,63,94,0.3));
+    transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: cakeBounce 2s ease-in-out infinite;
+    position: relative;
+    z-index: 5;
+  }
+
+  @keyframes cakeBounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50%       { transform: translateY(-8px) rotate(3deg); }
+  }
+
+  .big-cake:active { transform: scale(0.82) rotate(0deg) !important; }
+
+  .cake-hint {
+    color: var(--blush);
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 15px;
+  }
+
+  /* ====== SECOND SONG ====== */
+  .music-box2 {
+    width: 100%;
+    max-width: 580px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 28px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 8px 25px rgba(244,63,94,0.1);
+    border: 1px solid rgba(244,63,94,0.1);
+    animation: fadeUp 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  .play-btn2 {
+    background: linear-gradient(135deg, #be185d 0%, var(--rose) 100%);
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(190,24,93,0.35);
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  .play-btn2.playing { background: #0ea5e9; box-shadow: 0 5px 15px rgba(14,165,233,0.3); }
+
+  /* ====== FLY ITEMS ====== */
   .fly-item {
     position: fixed;
     pointer-events: none;
@@ -197,7 +278,7 @@
   }
 
   @keyframes flyOut {
-    0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+    0%   { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
     100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(var(--sz)) rotate(var(--rt)); opacity: 0; }
   }
 
@@ -216,6 +297,8 @@
 <div class="bg-layer" id="bgLayer"></div>
 
 <div class="page">
+
+  <!-- ===== CARD ===== -->
   <div class="card">
     <div class="card-title">عيد ميلاد سعيد يا أمي أمل ❤️</div>
     
@@ -231,17 +314,41 @@
     </div>
 
     <div class="heart-wrap">
-      <span class="big-heart" id="mainHeart" onmousedown="explode(event)" ontouchstart="explode(event)">💖</span>
+      <span class="big-heart" id="mainHeart" onmousedown="explode(event,'heart')" ontouchstart="explode(event,'heart')">💖</span>
       <p style="color: var(--blush); margin-top: 15px; font-weight: 900; letter-spacing: 1px;">✨ اضغطي على القلب ✨</p>
     </div>
   </div>
 
+  <!-- ===== SONG 1: ست الحبايب ===== -->
   <div class="music-box">
     <p style="font-weight: 700; color: var(--deep);">أغنية ست الحبايب 🎵</p>
-    <button class="play-btn" id="playBtn" onclick="toggleMusic()">
-      <span id="btnText">تشغيل الأغنية ❤️</span>
-      <div class="eq paused" id="eq">
-        <div class="eq-bar"></div><div class="eq-bar" style="animation-delay:0.2s"></div><div class="eq-bar" style="animation-delay:0.4s"></div>
+    <button class="play-btn" id="playBtn" onclick="toggleMusic1()">
+      <span id="btnText1">تشغيل الأغنية ❤️</span>
+      <div class="eq paused" id="eq1">
+        <div class="eq-bar"></div>
+        <div class="eq-bar" style="animation-delay:0.2s"></div>
+        <div class="eq-bar" style="animation-delay:0.4s"></div>
+        <div class="eq-bar" style="animation-delay:0.1s"></div>
+      </div>
+    </button>
+  </div>
+
+  <!-- ===== CAKE SECTION ===== -->
+  <div class="cake-section">
+    <p class="cake-label">🎂 كيكة عيد ميلادك يا أمي 🎂</p>
+    <span class="big-cake" id="mainCake" onmousedown="explode(event,'cake')" ontouchstart="explode(event,'cake')">🎂</span>
+    <p class="cake-hint">✨ اضغطي على الكيكة ✨</p>
+  </div>
+
+  <!-- ===== SONG 2 ===== -->
+  <div class="music-box2">
+    <p style="font-weight: 700; color: var(--deep);">أغنية Happy Birthday 🎂🎵</p>
+    <button class="play-btn2" id="playBtn2" onclick="toggleMusic2()">
+      <span id="btnText2">تشغيل الأغنية 🎂</span>
+      <div class="eq paused" id="eq2">
+        <div class="eq-bar"></div>
+        <div class="eq-bar" style="animation-delay:0.2s"></div>
+        <div class="eq-bar" style="animation-delay:0.4s"></div>
         <div class="eq-bar" style="animation-delay:0.1s"></div>
       </div>
     </button>
@@ -250,76 +357,104 @@
   <div class="footer">صُنع بكل حُب 🤍<br><span style="color: var(--rose); font-size: 22px;">عبدالرحمن عاطف</span></div>
 </div>
 
-<audio id="audio" loop>
+<!-- AUDIO -->
+<audio id="audio1" loop>
   <source src="https://files.catbox.moe/uxcp1w.m4a" type="audio/mp4">
+</audio>
+<audio id="audio2" loop>
+  <source src="https://files.catbox.moe/pyzhr8.m4a" type="audio/mp4">
 </audio>
 
 <script>
-  const audio = document.getElementById('audio');
-  const btn = document.getElementById('playBtn');
-  const eq = document.getElementById('eq');
-  const btnText = document.getElementById('btnText');
+  const audio1 = document.getElementById('audio1');
+  const audio2 = document.getElementById('audio2');
 
-  function toggleMusic() {
-    if (audio.paused) {
-      audio.play().then(() => {
-        btn.classList.add('playing');
-        eq.classList.remove('paused');
-        btnText.innerText = "إيقاف الأغنية ⏸️";
-      }).catch(e => {
-        alert("يرجى الضغط مرة أخرى لتشغيل الصوت ✨");
-      });
+  /* ===== SONG 1 ===== */
+  function toggleMusic1() {
+    if (audio1.paused) {
+      audio2.pause(); resetBtn2();
+      audio1.play().then(() => {
+        document.getElementById('playBtn').classList.add('playing');
+        document.getElementById('eq1').classList.remove('paused');
+        document.getElementById('btnText1').innerText = "إيقاف الأغنية ⏸️";
+      }).catch(() => alert("يرجى الضغط مرة أخرى لتشغيل الصوت ✨"));
     } else {
-      audio.pause();
-      btn.classList.remove('playing');
-      eq.classList.add('paused');
-      btnText.innerText = "تشغيل الأغنية ❤️";
+      audio1.pause(); resetBtn1();
     }
   }
 
-  // وظيفة الانفجار المحسنة
-  function explode(e) {
-    // تحديد مكان الضغطة بدقة (سواء ماوس أو لمس)
+  function resetBtn1() {
+    document.getElementById('playBtn').classList.remove('playing');
+    document.getElementById('eq1').classList.add('paused');
+    document.getElementById('btnText1').innerText = "تشغيل الأغنية ❤️";
+  }
+
+  /* ===== SONG 2 ===== */
+  function toggleMusic2() {
+    if (audio2.paused) {
+      audio1.pause(); resetBtn1();
+      audio2.play().then(() => {
+        document.getElementById('playBtn2').classList.add('playing');
+        document.getElementById('eq2').classList.remove('paused');
+        document.getElementById('btnText2').innerText = "إيقاف الأغنية ⏸️";
+      }).catch(() => alert("يرجى الضغط مرة أخرى لتشغيل الصوت ✨"));
+    } else {
+      audio2.pause(); resetBtn2();
+    }
+  }
+
+  function resetBtn2() {
+    document.getElementById('playBtn2').classList.remove('playing');
+    document.getElementById('eq2').classList.add('paused');
+    document.getElementById('btnText2').innerText = "تشغيل الأغنية 🎂";
+  }
+
+  /* ===== EXPLODE ===== */
+  function explode(e, type) {
     const x = e.clientX || (e.touches && e.touches[0].clientX);
     const y = e.clientY || (e.touches && e.touches[0].clientY);
-    
-    const items = ['❤️','🌸','🌹','🎂','✨','💖','💕','💝','🌷'];
-    
-    for(let i=0; i<40; i++) {
+
+    const heartItems = ['❤️','🌸','🌹','🎂','✨','💖','💕','💝','🌷'];
+    const cakeItems  = ['🎂','🎁','🎀','💖','✨','🎉','🎊','🎈','🌟','💝','🎶','🍰'];
+
+    const items = type === 'cake' ? cakeItems : heartItems;
+    const count = type === 'cake' ? 50 : 40;
+
+    for (let i = 0; i < count; i++) {
       const el = document.createElement('div');
       el.className = 'fly-item';
-      el.innerHTML = items[Math.floor(Math.random()*items.length)];
-      
-      // إحداثيات عشوائية للانفجار في كل الاتجاهات
-      const dx = (Math.random() - 0.5) * 500 + 'px';
-      const dy = (Math.random() - 0.5) * 500 + 'px';
+      el.innerHTML = items[Math.floor(Math.random() * items.length)];
+      el.style.fontSize = (Math.random() * 22 + 18) + 'px';
+
+      const dx = (Math.random() - 0.5) * 600 + 'px';
+      const dy = (Math.random() - 0.5) * 600 + 'px';
       const sz = Math.random() * 1.5 + 0.5;
       const rt = Math.random() * 720 + 'deg';
-      
+      const delay = Math.random() * 200;
+
       el.style.left = x + 'px';
-      el.style.top = y + 'px';
+      el.style.top  = y + 'px';
+      el.style.animationDelay = delay + 'ms';
       el.style.setProperty('--dx', dx);
       el.style.setProperty('--dy', dy);
       el.style.setProperty('--sz', sz);
       el.style.setProperty('--rt', rt);
-      
+
       document.body.appendChild(el);
-      
-      // حذف العنصر بعد انتهاء الحركة
-      setTimeout(() => el.remove(), 1500);
+      setTimeout(() => el.remove(), 1700 + delay);
     }
   }
 
-  // تأثير النجوم عند تحريك اليد على الشاشة
+  /* ===== TOUCH SPARKLE ===== */
   document.addEventListener('touchmove', (e) => {
-    if(Math.random() > 0.8) {
+    if (Math.random() > 0.8) {
       const x = e.touches[0].clientX;
       const y = e.touches[0].clientY;
       const star = document.createElement('div');
       star.className = 'fly-item';
       star.innerHTML = '✨';
       star.style.left = x + 'px';
-      star.style.top = y + 'px';
+      star.style.top  = y + 'px';
       star.style.setProperty('--dx', (Math.random()-0.5)*50+'px');
       star.style.setProperty('--dy', (Math.random()-0.5)*50+'px');
       star.style.setProperty('--sz', '0.5');
@@ -329,12 +464,12 @@
     }
   });
 
-  // قلوب الخلفية المستمرة
+  /* ===== BG HEARTS ===== */
   const bg = document.getElementById('bgLayer');
   function createBgHeart() {
     const h = document.createElement('div');
     h.className = 'bg-heart';
-    h.innerHTML = ['💖','🌸','✨','🤍'][Math.floor(Math.random()*4)];
+    h.innerHTML = ['💖','🌸','✨','🤍','🎂','🎈'][Math.floor(Math.random()*6)];
     h.style.left = Math.random()*100 + 'vw';
     h.style.animationDuration = 5 + Math.random()*10 + 's';
     bg.appendChild(h);
