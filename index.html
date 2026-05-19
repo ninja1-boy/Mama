@@ -76,10 +76,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px 16px 50px;
+    padding: 30px 16px 160px;
     gap: 28px;
   }
 
+  /* ===== CARD ===== */
   .card {
     width: 100%;
     max-width: 580px;
@@ -91,7 +92,7 @@
     animation: fadeUp 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     position: relative;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255,255,255,0.5);
   }
 
   @keyframes fadeUp {
@@ -122,10 +123,7 @@
 
   .poem-line { display: block; margin-bottom: 5px; }
 
-  .heart-wrap {
-    position: relative;
-    display: inline-block;
-  }
+  .heart-wrap { position: relative; display: inline-block; }
 
   .big-heart {
     font-size: 90px;
@@ -202,11 +200,7 @@
     animation: fadeUp 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
   }
 
-  .cake-label {
-    font-weight: 900;
-    font-size: 18px;
-    color: var(--deep);
-  }
+  .cake-label { font-weight: 900; font-size: 18px; color: var(--deep); }
 
   .big-cake {
     font-size: 90px;
@@ -226,12 +220,7 @@
 
   .big-cake:active { transform: scale(0.82) rotate(0deg) !important; }
 
-  .cake-hint {
-    color: var(--blush);
-    font-weight: 900;
-    letter-spacing: 1px;
-    font-size: 15px;
-  }
+  .cake-hint { color: var(--blush); font-weight: 900; letter-spacing: 1px; font-size: 15px; }
 
   /* ====== SECOND SONG ====== */
   .music-box2 {
@@ -268,6 +257,73 @@
 
   .play-btn2.playing { background: #0ea5e9; box-shadow: 0 5px 15px rgba(14,165,233,0.3); }
 
+  /* ====== VIDEOS ====== */
+  .videos-section {
+    width: 100%;
+    max-width: 580px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 36px;
+    padding: 28px 22px 24px;
+    box-shadow: 0 20px 50px rgba(244,63,94,0.18);
+    border: 1.5px solid rgba(255,255,255,0.6);
+    animation: fadeUp 2.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .videos-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--rose), var(--pink), var(--blush), var(--pink), var(--rose));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .vid-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(244,63,94,0.22);
+    aspect-ratio: 9/16;
+    background: #1a0a10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .vid-wrap:hover, .vid-wrap:focus-within {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(244,63,94,0.35);
+  }
+
+  .vid-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 2px solid rgba(244,63,94,0.25);
+    pointer-events: none;
+  }
+
+  .vid-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+  }
+
   /* ====== FLY ITEMS ====== */
   .fly-item {
     position: fixed;
@@ -289,6 +345,41 @@
     font-weight: 700;
     margin-top: 10px;
   }
+
+  /* ====== القطة ====== */
+  .cat-scene {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 130px;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  .cat-bg {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(to bottom, rgba(252,228,236,0) 0%, rgba(248,187,208,0.55) 60%, rgba(244,63,94,0.18) 100%);
+  }
+
+  #gato {
+    background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
+    height: 100px;
+    width: 170px;
+    background-size: auto 100px;
+    position: absolute;
+    bottom: 10px;
+    animation: sprite-animation 1.2s steps(16,end) infinite;
+  }
+
+  @keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to   { background-position: -2720px 0; }
+  }
 </style>
 </head>
 <body>
@@ -298,10 +389,9 @@
 
 <div class="page">
 
-  <!-- ===== CARD ===== -->
+  <!-- CARD -->
   <div class="card">
     <div class="card-title">عيد ميلاد سعيد يا أمي أمل ❤️</div>
-    
     <div class="poem-box">
       <span class="poem-line">أمي العزيزه..💌</span>
       <span class="poem-line">أمي يا أغلى من الموناليزا..💟</span>
@@ -312,14 +402,13 @@
       <span class="poem-line">كل عام وأنتِ الخير ونبض الفؤاد 🌷</span>
       <span class="poem-line">يا جنة الدنيا.. يا أجمل أعياد 🎂</span>
     </div>
-
     <div class="heart-wrap">
       <span class="big-heart" id="mainHeart" onmousedown="explode(event,'heart')" ontouchstart="explode(event,'heart')">💖</span>
       <p style="color: var(--blush); margin-top: 15px; font-weight: 900; letter-spacing: 1px;">✨ اضغطي على القلب ✨</p>
     </div>
   </div>
 
-  <!-- ===== SONG 1: ست الحبايب ===== -->
+  <!-- SONG 1 -->
   <div class="music-box">
     <p style="font-weight: 700; color: var(--deep);">أغنية ست الحبايب 🎵</p>
     <button class="play-btn" id="playBtn" onclick="toggleMusic1()">
@@ -333,14 +422,14 @@
     </button>
   </div>
 
-  <!-- ===== CAKE SECTION ===== -->
+  <!-- CAKE -->
   <div class="cake-section">
     <p class="cake-label">🎂 كيكة عيد ميلادك يا أمي 🎂</p>
     <span class="big-cake" id="mainCake" onmousedown="explode(event,'cake')" ontouchstart="explode(event,'cake')">🎂</span>
     <p class="cake-hint">✨ اضغطي على الكيكة ✨</p>
   </div>
 
-  <!-- ===== SONG 2 ===== -->
+  <!-- SONG 2 -->
   <div class="music-box2">
     <p style="font-weight: 700; color: var(--deep);">أغنية Happy Birthday 🎂🎵</p>
     <button class="play-btn2" id="playBtn2" onclick="toggleMusic2()">
@@ -354,7 +443,29 @@
     </button>
   </div>
 
+  <!-- VIDEOS -->
+  <div class="videos-section">
+    <div class="videos-grid">
+      <div class="vid-wrap">
+        <video controls playsinline>
+          <source src="https://files.catbox.moe/bkd6m6.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="vid-wrap">
+        <video controls playsinline>
+          <source src="https://files.catbox.moe/5iov86.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+
   <div class="footer">صُنع بكل حُب 🤍<br><span style="color: var(--rose); font-size: 22px;">عبدالرحمن عاطف</span></div>
+</div>
+
+<!-- القطة -->
+<div class="cat-scene">
+  <div class="cat-bg"></div>
+  <div id="gato"></div>
 </div>
 
 <!-- AUDIO -->
@@ -366,10 +477,10 @@
 </audio>
 
 <script>
+  /* ===== AUDIO ===== */
   const audio1 = document.getElementById('audio1');
   const audio2 = document.getElementById('audio2');
 
-  /* ===== SONG 1 ===== */
   function toggleMusic1() {
     if (audio1.paused) {
       audio2.pause(); resetBtn2();
@@ -389,7 +500,6 @@
     document.getElementById('btnText1').innerText = "تشغيل الأغنية ❤️";
   }
 
-  /* ===== SONG 2 ===== */
   function toggleMusic2() {
     if (audio2.paused) {
       audio1.pause(); resetBtn1();
@@ -409,37 +519,60 @@
     document.getElementById('btnText2').innerText = "تشغيل الأغنية 🎂";
   }
 
+  /* ===== القطة - ذهاب وإياب بلا توقف ===== */
+  const gato = document.getElementById('gato');
+  const WALK_DURATION = 13000;
+  const CAT_W = 170;
+  let goingRight = true;
+  let startTime = null;
+
+  function animateCat(ts) {
+    if (!startTime) startTime = ts;
+    const progress = Math.min((ts - startTime) / WALK_DURATION, 1);
+    const sw = window.innerWidth;
+
+    if (goingRight) {
+      gato.style.left = (-CAT_W + (sw + CAT_W) * progress) + 'px';
+      gato.style.transform = 'scaleX(-1)';
+    } else {
+      gato.style.left = (sw - (sw + CAT_W) * progress) + 'px';
+      gato.style.transform = 'scaleX(1)';
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(animateCat);
+    } else {
+      goingRight = !goingRight;
+      startTime = null;
+      requestAnimationFrame(animateCat);
+    }
+  }
+
+  requestAnimationFrame(animateCat);
+
   /* ===== EXPLODE ===== */
   function explode(e, type) {
     const x = e.clientX || (e.touches && e.touches[0].clientX);
     const y = e.clientY || (e.touches && e.touches[0].clientY);
-
     const heartItems = ['❤️','🌸','🌹','🎂','✨','💖','💕','💝','🌷'];
     const cakeItems  = ['🎂','🎁','🎀','💖','✨','🎉','🎊','🎈','🌟','💝','🎶','🍰'];
-
     const items = type === 'cake' ? cakeItems : heartItems;
     const count = type === 'cake' ? 50 : 40;
-
     for (let i = 0; i < count; i++) {
       const el = document.createElement('div');
       el.className = 'fly-item';
       el.innerHTML = items[Math.floor(Math.random() * items.length)];
       el.style.fontSize = (Math.random() * 22 + 18) + 'px';
-
       const dx = (Math.random() - 0.5) * 600 + 'px';
       const dy = (Math.random() - 0.5) * 600 + 'px';
-      const sz = Math.random() * 1.5 + 0.5;
-      const rt = Math.random() * 720 + 'deg';
       const delay = Math.random() * 200;
-
       el.style.left = x + 'px';
       el.style.top  = y + 'px';
       el.style.animationDelay = delay + 'ms';
       el.style.setProperty('--dx', dx);
       el.style.setProperty('--dy', dy);
-      el.style.setProperty('--sz', sz);
-      el.style.setProperty('--rt', rt);
-
+      el.style.setProperty('--sz', Math.random() * 1.5 + 0.5);
+      el.style.setProperty('--rt', Math.random() * 720 + 'deg');
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 1700 + delay);
     }
@@ -478,4 +611,4 @@
   setInterval(createBgHeart, 400);
 </script>
 </body>
-</html>
+        </html>
